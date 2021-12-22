@@ -1,18 +1,10 @@
-version: v1.0
-name: The name of the Semaphore 2.0 project
-agent:
-  machine:
-    type: e1-standard-2
-    os_image: ubuntu1804
-blocks:
- - name: Inspect Linux environment
-   task:
-      jobs:
-        - name: Print Envrinment variable
-          commands:
-            - echo $SEMAPHORE_PIPELINE_ID
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+# Build a service with Dockerfile
+version: '1.0'
+
+steps:
+  build-example:
+    type: build
+    description: yaml example
+    image-name: codefresh-io/image
+    dockerfile: Dockerfile
+    tag: latest
